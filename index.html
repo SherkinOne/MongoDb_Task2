@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link type="text/css" rel="stylesheet"  href="styles/tailwind.css" />
-    <link  rel="stylesheet" href="styles/styles.css" />
-    
+    <link rel="stylesheet" type="text/css"  href="styles/tailwind.css" />
+    <link  rel="stylesheet" type="text/css" href="styles/styles.css" />
+  <script src="indexPage.js"> </script>
     <title>Quiz</title>
 </head>
 
@@ -16,14 +16,14 @@
 <section class="lg">
     <h2>Answer questions</h2>
     <form class ="flex justify-start border-indigo-900 rounded-t-sm" action="/answerQuestions" method="POST">
-       <label> Question Here </label>
+       <label id="answerThis"> Question Here </label>
        <input type="radio" /> <label class="answerLabel"> Answer 1</label>
         <button class="border-indigo-900 rounded-t-sm" type="submit">Submit</button>
     </form>
 </section>
 <section class="hidden">
     <h2>Add questions</h2>
-    <form action="/addQuestions" method="POST">
+    <form action="/addQuestion" method="POST">
         <input type="text" placeholder="name" name="name">
         <input type="text" placeholder="quote" name="quote">
         <button id="addAnswer">Add Answer</button>
@@ -31,7 +31,8 @@
     </form>
 </section>
 <section class="hidden">
-    <form action="/changeQuestions" method="POST">
+  <h2> Update Questions</h2>
+  <form action="/changeQuestions" method="POST">
         <input type="text" placeholder="name" name="name">
         <input type="text" placeholder="quote" name="quote">
         <button type="submit">Submit</button>
@@ -45,3 +46,23 @@
 </body>
 
 </html>
+
+<style>
+
+h1 {
+    color : Green
+}
+
+.hidden {
+    display:none;
+}
+
+input{
+    display : block;
+}
+
+label {
+    display:block;
+    border-radius: 50%;
+}
+</style>

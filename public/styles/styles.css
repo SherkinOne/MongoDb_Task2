@@ -2,6 +2,10 @@ h1 {
     color : Green
 }
 
+.hidden {
+    display:none;
+}
+
 input{
     display : block;
 }
