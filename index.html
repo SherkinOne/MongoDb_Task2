@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet"  href="styles/tailwind.css" />
+    <link  rel="stylesheet" href="styles/styles.css" />
+    
+    <title>Quiz</title>
+</head>
+
+<body>
+    
+    <h1 class="font-black leading-8 border-indigo-900 rounded-t-sm"> Questions! </h1>
+
+ 
+<section class="lg">
+    <h2>Answer questions</h2>
+    <form class ="flex justify-start border-indigo-900 rounded-t-sm" action="/answerQuestions" method="POST">
+       <label> Question Here </label>
+       <input type="radio" /> <label class="answerLabel"> Answer 1</label>
+        <button class="border-indigo-900 rounded-t-sm" type="submit">Submit</button>
+    </form>
+</section>
+<section class="hidden">
+    <h2>Add questions</h2>
+    <form action="/addQuestions" method="POST">
+        <input type="text" placeholder="name" name="name">
+        <input type="text" placeholder="quote" name="quote">
+        <button id="addAnswer">Add Answer</button>
+        <button type="submit">Submit</button>
+    </form>
+</section>
+<section class="hidden">
+    <form action="/changeQuestions" method="POST">
+        <input type="text" placeholder="name" name="name">
+        <input type="text" placeholder="quote" name="quote">
+        <button type="submit">Submit</button>
+    </form>
+</section>
+<section class="hidden">
+    <form action="/deleteQuestions" method="POST">
+     This is a list
+    </form>
+    </section>
+</body>
+
+</html>
