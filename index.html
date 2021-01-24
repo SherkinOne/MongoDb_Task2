@@ -1,16 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css"  href="styles/tailwind.css" />
-    <link  rel="stylesheet" type="text/css" href="styles/styles.css" />
-  <script src="indexPage.js"> </script>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="styles/tailwind.css" />
+    <!-- <link  rel="stylesheet" type="text/css" href="styles/styles.css" /> -->
+    <script src="indexPage.js"></script>
     <title>Quiz</title>
-</head>
+  </head>
 
-<body>
-    
-    <h1 class="font-black leading-8 border-indigo-900 rounded-t-sm"> Questions! </h1>
+  <body>
+    <h1
+      class="font-black leading-8 border-indigo-900 text-center text-6xl m-12"
+    >
+      Welcome to Quiz App
+    </h1>
+    <section class="text-center m-12">
+      <button id="answerButton" onclick="location.href='\\answer'"
+        class="p-2 rounded-lg py-2 m-3 px-4 bg-purple-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+      >
+        Answer
+      </button>
+      <button id="addNew" onclick="location.href='\\addnew'"
+        class="p-2 rounded-lg py-2 m-3 px-4 bg-yellow-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+      >
+        Add New
+      </button>
+      <button id="changeQuestions" onclick="location.href='\\change'"
+        class="p-2 rounded-lg py-2 m-3 px-4 bg-green-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+      >
+        Change
+      </button>
+      <button
+        class="p-2 rounded-lg py-2 m-3 px-4 bg-red-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+      >
+        Delete
+      </button>
+    </section>
+
+    <!-- <h1 class="font-black leading-8 border-indigo-900 rounded-t-sm"> Questions! </h1>
 
  
 <section class="lg">
@@ -42,27 +69,25 @@
     <form action="/deleteQuestions" method="POST">
      This is a list
     </form>
-    </section>
-</body>
-
+    </section> -->
+  </body>
 </html>
 
 <style>
+  h1 {
+    color: Green;
+  }
 
-h1 {
-    color : Green
-}
+  .hidden {
+    display: none;
+  }
 
-.hidden {
-    display:none;
-}
+  input {
+    display: block;
+  }
 
-input{
-    display : block;
-}
-
-label {
-    display:block;
+  label {
+    display: block;
     border-radius: 50%;
-}
+  }
 </style>

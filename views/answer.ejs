@@ -1,0 +1,47 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css"  href="styles/tailwind.css" />
+    <link  rel="stylesheet" type="text/css" href="styles/styles.css" />
+  <script src="indexPage.js"> </script>
+<meta charset="UTF-8" />
+<title>Quiz Questions</title>
+</head>
+<header>
+    <h1
+    class="font-black leading-8 border-indigo-900 text-center text-6xl m-12"
+  >
+    Answer Questions
+  </h1>
+    <%- include('./static/buttons'); %>
+</header>
+<body>
+
+
+    
+  
+<ul class="quotes">
+<!-- Loop through quotes -->
+<% for(var i = 0; i < quotes.length; i++) {%>
+<li class="quote">
+<!-- Output name from the iterated quote object -->
+<span><%= quotes[i].Question %></span>:
+<!-- Output quote from the iterated quote object -->
+<span><%= quotes[i].quote %></span>
+</li>
+<% } %>
+</ul> 
+
+<section class="lg">
+    <h2>Answer questions</h2>
+    <form class ="flex justify-start border-indigo-900 rounded-t-sm" action="/answerQuestions" method="POST">
+       <label id="answerThis"> Question Here </label>
+       <input type="radio" /> <label class="answerLabel"> Answer 1</label>
+        <button class="border-indigo-900 rounded-t-sm" type="submit">Submit</button>
+    </form>
+</section>
+
+
+</body>
+</html>
