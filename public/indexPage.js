@@ -11,15 +11,25 @@ window.addEventListener("load", function () {
 
   //  ---        - end of enser page functions --
 
-  const button = document.getElementById("answerButton");
+  const button = document.getElementById("nextButton");
 
   button.addEventListener("click", function (e) {
     console.log("button was clicked");
+const headers = {
+  "Content-Type": "application/json",
+  "client_id": "1001125",
+  "client_secret": "876JHG76UKFJYGVHf867rFUTFGHCJ8JHV"
+}
+const data = {
+  "name": "Wade Wilson",
+  "occupation": "Murderer",
+  "age": "30 (forever)"
+}
 
-    fetch("/answer", { method: "GET" })
+fetch("/getnextrecords", { method: 'POST', headers: headers, body: data})
       .then(function (response) {
         if (response.ok) {
-          console.log("Click was recorded");
+          console.log("response " , response.data);
 
           return;
         }

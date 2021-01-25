@@ -51,14 +51,57 @@ MongoClient.connect(
       res.redirect("/addnew");
     });
 
+app.post("/getnextrecords",  (req, res, next) => {
+  console.log("load next records");
+  console.log("fitsr : ", req.body)
+  res.redirect("/change")
+  // req.params.page=4
+});
 
-
-    app.get("/change", (req, res) => {
+    app.get("/change", async (req, res, next) => {
       console.log("change");
       //  res.sendFile(__dirname +'/views/addnew.html')
-
-      res.render("./change.ejs");
+      var perPage = 5
+      console.log("next ", next)
+    
+      var page = req.params.page || 1
+      console.log("page bo ", page);
+      db.collection("Quiz")
+          .find({})
+          .skip((perPage * page) - perPage)
+          .limit(perPage).toArray().then ((results) =>{
+            res.render("change.ejs", { questions :  results, page : page });
+            console.log(page)
+          })
+          // .exec(function(err, products) {
+          //   db.collection("Quiz").count().exec(function(err, count) {
+          //         if (err) return next(err)
+          //         res.render('./change.ejs', {
+                     
+          //             pages: Math.ceil(count / perPage)
+          //         })
+          //     })
+          // })
     });
+
+    app.get("/change/:page", async  (req, res, next) =>{
+      try {
+      var perPage = 5
+      console.log("chang to ", req.params)
+      var page = req.params.page || 1
+      
+      db.collection("Quiz")
+          .find({})
+          .skip((perPage * page) - perPage)
+          .limit(perPage).toArray().then ((results) =>{
+            res.render("change.ejs", { questions :  results, page : page });
+           console.log(results)
+          })
+        }
+        catch (error){
+          return next(error)
+        }
+    })
 
     app.get("/addnew", (req, res) => {
       console.log("addnew");
