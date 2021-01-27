@@ -11,49 +11,47 @@ window.addEventListener("load", function () {
 
   //  ---        - end of enser page functions --
 
-  const button = document.getElementById("nextButton");
+//   const button = document.getElementById("nextButton");
 
-  button.addEventListener("click", function (e) {
-    console.log("button was clicked");
-const headers = {
-  "Content-Type": "application/json",
-  "client_id": "1001125",
-  "client_secret": "876JHG76UKFJYGVHf867rFUTFGHCJ8JHV"
-}
-const data = {
-  "name": "Wade Wilson",
-  "occupation": "Murderer",
-  "age": "30 (forever)"
-}
+//   button.addEventListener("click", function (e) {
+//     console.log("button was clicked");
+// const headers = {
+//   "Content-Type": "application/json",
+//   "client_id": "1001125",
+//   "client_secret": "876JHG76UKFJYGVHf867rFUTFGHCJ8JHV"
+// }
+// const data = {
+//  "page":4
+// }
 
-fetch("/getnextrecords", { method: 'POST', headers: headers, body: data})
-      .then(function (response) {
-        if (response.ok) {
-          console.log("response " , response.data);
+// fetch("/getnextrecords", { method: 'POST', headers: headers, body: JSON.stringify(data)})
+//       .then(function (response) {
+//         if (response.ok) {
+//           console.log("response " , response.data);
 
-          return;
-        }
-        throw new Error("Request failed.");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  });
+//           return;
+//         }
+//         throw new Error("Request failed.");
+//       })
+//       .catch(function (error) {
+//         console.log(error);
+//       });
+//   });
 
-  // changeButton.addEventListener('click', function(e) {
-  //   console.log('button was clicked');
+//   // changeButton.addEventListener('click', function(e) {
+//   //   console.log('button was clicked');
 
-  //   fetch('/change', {method: 'GET'})
-  //     .then(function(response) {
-  //       if(response.ok) {
-  //         console.log('Click was recorded');
+//   //   fetch('/change', {method: 'GET'})
+//   //     .then(function(response) {
+//   //       if(response.ok) {
+//   //         console.log('Click was recorded');
 
-  //         return;
-  //       }
-  //       throw new Error('Request failed.');
-  //     })
-  //     .catch(function(error) {
-  //       console.log(error);
-  //     });
-  // });
+//   //         return;
+//   //       }
+//   //       throw new Error('Request failed.');
+//   //     })
+//   //     .catch(function(error) {
+//   //       console.log(error);
+//   //     });
+//   // });
 });

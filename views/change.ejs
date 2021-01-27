@@ -3,84 +3,86 @@
 <html lang="en">
 
 <head>
+  <link rel="shortcut icon" type="image/png" href="/favicon.png" />
   <link rel="stylesheet" type="text/css" href="/styles/tailwind.css" />
   <link rel="stylesheet" type="text/css" href="/styles/styles.css" />
-  <script src="indexPage.js"> </script>
+
   <meta charset="UTF-8" />
   <title>Quiz Questions</title>
 </head>
 
 <body>
 
-  <head>
+  <header>
+    <h1 class="font-black leading-8 border-indigo-900 text-center text-6xl m-12">
+      Change Questions
+    </h1>
+    <%- include('./static/buttons'); %>
+  </header>
 
-  </head>
-
-  <body>
-    <header>
-      <h1 class="font-black leading-8 border-indigo-900 text-center text-6xl m-12">
-        Change Questions
-      </h1>
-      <%- include('./static/buttons'); %>
-    </header>
-
-    <% for(var i=0; i < questions.length; i++) {%>
-      <form class="border-4 border-black-500 text-center m-12 text-xl font-bold" action="/savenewquestion"
-        method="POST">
-        <label class="hidden" name="id">
-          <%= questions[i]._id %>
-        </label>
-        <label class="inline">Question </label> <input name="newQuestion"
-          class="questionTextBox mb-10 w-full inline border-4 border-blue-500 border-opacity-25 " />
-        <br />
-        <section class="block inline-grid grid-cols-2 gap-x-4" id="newAnswerSection">
-          <label class=""> Correct Answer </label> <input name="correctAnswer"
-            class="correctAnswerBox w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
-          <label class=""> Other Answer 1 </label> <input name="answers"
-            class="w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
-          <label class=""> Other Answer 2 </label> <input name="answers"
-            class="w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+  <% for(var i=0; i < questions.length; i++) {%>
+    <form class="border-4 border-black-500 text-center m-12 text-xl font-bold" action="/records" method="POST">
+      <input class="hidden idLabel" name="id">
+        
+      </input>
+      <label class="inline">Question </label> <input name="newQuestion"
+        class="questionTextBox mb-10 w-full inline border-4 border-blue-500 border-opacity-25 " />
+      <br />
+      <section class="block inline-grid grid-cols-2 gap-x-4" id="newAnswerSection">
+        <label class=""> Correct Answer </label> <input name="correctAnswer"
+          class="correctAnswerBox w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+        <label class=""> Other Answer 1 </label> <input name="answers"
+          class="w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+        <label class=""> Other Answer 2 </label> <input name="answers"
+          class="w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
 
 
-        </section>
-        <!-- <button  id="addNewAnswer" class="p-2 rounded-lg py-2 m-3 px-4 bg-red-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">Add New Answer</button>  -->
-        <br />
-        <button type="submit"
-          class="p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
-          Update Question</button>
-        <button type="submit"
-          class="p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
-          Delete Question</button>
-      </form>
-      <!-- Loop through quotes -->
-      <script>
-        // questionTextBox
-        var docNo =parseInt('<%= i %> ');
-        var questiontxt = '<%= questions[i].answers %> '
-      console.log(questiontxt[0])
-        document.getElementsByClassName("questionTextBox")[docNo].value =  '<%= questions[i].Question %> '
-        document.getElementsByClassName("correctAnswerBox")[docNo].value ='<%= questions[i].correctAnswer %>'
-     
-      </script>
-      <% } %>
-      
+      </section>
+      <!-- <button  id="addNewAnswer" class="p-2 rounded-lg py-2 m-3 px-4 bg-red-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">Add New Answer</button>  -->
+      <br />
+      <button type="submit" value="Update" name="action"
+        class="p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
+        Update Question</button>
+      <button type="submit" value="Delete" name="action"
+        class=" deletetButton p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
+        Delete Question</button>
+    </form>
+    <!-- Loop through quotes -->
+    <script>
+      // questionTextBox
+      var docNo = parseInt('<%= i %> ');
+      var questiontxt = '<%= questions[i].answers %> '
+      console.log(this);
+      document.getElementsByClassName("idLabel")[docNo].value = '<%= questions[i]._id %> '
+      document.getElementsByClassName("questionTextBox")[docNo].value = '<%= questions[i].Question %> '
+      document.getElementsByClassName("correctAnswerBox")[docNo].value = '<%= questions[i].correctAnswer %>'
+
+    </script>
+    <% } %>
+
       <article>
-    
-        <% if (page > 1) { %>
-        <button type="submit" onclick="location.href='\\change\\<%=page-1 %>'"
-        class="p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
-        Previous</button>
-      <% } %>
-      <button type="submit" id="nextButton" 
-        class="p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
-       Next</button>
+
+        <% if (page> 1) { %>
+          <button type="submit" id="backButton"
+            class="p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
+            Previous</button>
+          <% } %>
+            <button type="submit" id="nextButton"
+              class="p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
+              Next</button>
       </article>
       <script>
-        //    var docNo = <%- page %> ;
-        // console.log(docNo+1)
-// document.getElementById("nextButton").setAttribute('onclick', "location.href='\\change\\"+(docNo+1)+"'")
+        var docNo = parseInt('<%= page %>');
+        
+        var element = document.getElementById("backButton");
+        if (typeof (element) != 'undefined' && element != null) {
+          element.setAttribute('onclick', "location.href='" + (docNo - 1) + "'");
+        }
+        document.getElementById("nextButton").setAttribute('onclick', "location.href='" + (docNo + 1) + "'");
+
+
       </script>
 
-  </body>
+</body>
 
 </html>
