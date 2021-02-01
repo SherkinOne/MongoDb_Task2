@@ -1,40 +1,63 @@
 <!-- addnew.ejs -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" type="text/css"  href="styles/tailwind.css" />
-    <link  rel="stylesheet" type="text/css" href="styles/styles.css" />
-  <script src="indexPage.js"> </script>
-<meta charset="UTF-8" />
-<title>Quiz Questions</title>
-</head>
-<body>
-<head>
 
+<head>
+  <link rel="stylesheet" type="text/css" href="styles/tailwind.css" />
+  <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+  <script src="indexPage.js"> </script>
+  <meta charset="UTF-8" />
+  <title>Quiz Questions</title>
 </head>
+
 <body>
+
+  <head>
+
+  </head>
+
+  <body>
     <header>
-        <h1
-        class="font-black leading-8 border-indigo-900 text-center text-6xl m-12"
-      >
+      <h1 class="font-black leading-8 border-indigo-900 text-center text-6xl m-12">
         Add New Questions
       </h1>
-        <%- include('./static/buttons'); %>
+      <%- include('./static/buttons'); %>
     </header>
-   <form class="text-center m-12 text-xl font-bold" action="/savenewquestion" method="POST">
-    <label class="inline">Question </label> <input name="newQuestion" class="w-full mb-10 inline border-4 border-blue-500 border-opacity-25 " id="newQ" />
-    <br />
-    <section class="block inline-grid grid-cols-2 gap-x-4" id="newAnswerSection">
-        <label class=""> Correct Answer </label> <input name="correctAnswer" class="w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
-<label class=""> Other Answer 1 </label> <input name="answers"  class="w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
-<label class="">  Other Answer 2 </label> <input name="answers"  class="w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+    <form class="text-center m-12 text-xl font-bold" action="/savenewquestion" method="POST">
+      <label class="inline">Question </label> <input name="newQuestion"
+        class="w-full mb-10 inline border-4 border-blue-500 border-opacity-25 " id="newQ" />
+      <br />
+      <section class="block inline-grid grid-cols-2 gap-x-4" id="newAnswerSection">
+        <label class=""> Correct Answer </label> <input name="correctAnswer"
+          class="w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+        <label class=""> Other Answer 1 </label> <input name="answers"
+          class="w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+        <label class=""> Other Answer 2 </label> <input name="answers"
+          class="w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+          <label class=""> Other Answer 3 </label> <input name="answers"
+          class="w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+        <select name="skill">
+          <option>Kind</option>
+          <option>Passable</option>
+          <option>Challenging</option>
+        </select>
+        <select name="category">
+          <option>General</option>
+          <otion>Sport</otion>
+          <Option>Geography</Option>
+          <option>Entertainment</option>
+          <option>History</option>
+          
+        </select>
 
+      </section>
+      <!-- <button  id="addNewAnswer" class="p-2 rounded-lg py-2 m-3 px-4 bg-red-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">Add New Answer</button>  -->
+      <br />
+      <button type="submit"
+        class="p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
+        Save New Question</button>
+    </form>
 
-    </section>
-    <!-- <button  id="addNewAnswer" class="p-2 rounded-lg py-2 m-3 px-4 bg-red-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">Add New Answer</button>  -->
-    <br />
-    <button type ="submit" class="p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"> Save New Question</button>
-</form>
+  </body>
 
-</body>
 </html>

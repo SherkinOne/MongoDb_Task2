@@ -1,0 +1,196 @@
+<!-- addnew.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="/styles/tailwind.css" />
+    <link rel="stylesheet" type="text/css" href="/styles/styles.css" />
+
+    <meta charset="UTF-8" />
+    <title>Quiz Questions</title>
+</head>
+
+<body>
+
+    <header>
+        <h1 class="font-black leading-8 border-indigo-900 text-center text-6xl m-12">
+            Change Questions
+        </h1>
+        <%- include('./static/buttons'); %>
+    </header>
+    <label class="text-center text-xl font-bold ">Search Options</label>
+    <form action="/search" class="p-4 py-2 m-3 px-4 flex justify-center text-xl font-bold " method="POST">
+        <article class="ml-4">
+            <label class="text-center"> Difficulty Level</label>
+            <select name="searchSkill" id="searchSkill"
+                class="object-right w-80 mr-4 border-4 border-blue-500 border-opacity-50">
+                <option></option>
+                <option>Kind</option>
+                <option>Passable</option>
+                <option>Challenging</option>
+            </select>
+        </article>
+        <article class="ml-4">
+            <label class="text-center">Topic</label>
+            <select name="searchCategory" id="searchCategory" class="w-80 border-4 border-blue-500 border-opacity-50">
+                <option></option>
+                <option>General</option>
+                <otion>Sport</otion>
+                <Option>Geography</Option>
+                <option>Entertainment</option>
+                <option>History</option>
+            </select>
+        </article>
+        <article class="ml-4">
+            <label class="text-center">Search Term</label> <input id="searchInputBox"
+                class="w-80 border-4 border-blue-500 border-opacity-50" />
+        </article>
+        <button
+            class="p-2 center-bottom rounded-lg py-2 m-3 px-4 bg-red-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">Search</button>
+    </form>
+    <section id="questionListSection">
+        <% for(var i=0; i < questions.length; i++) {%>
+            <form class="border-4 border-black-500 text-center m-12 text-xl font-bold" action="/records" method="POST">
+                <input class="hidden idLabel" name="id" value='<%= questions[i]._id %>'>
+
+                </input>
+                <label class="inline">Question </label> <input name="newQuestion"
+                    value='<%= questions[i].newQuestion %>'
+                    class="questionTextBox text-center mb-10 w-full inline border-4 border-blue-500 border-opacity-25 " />
+                <br />
+                <section class="block inline-grid grid-cols-2 gap-x-4" id="newAnswerSection">
+                    <label class=""> Correct Answer </label> <input name="correctAnswer"
+                        value='<%= questions[i].correctAnswer %>'
+                        class="correctAnswerBox w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+                    <label class=""> Other Answer 1 </label> <input name="answers" id="answer1"
+                        value='<%= questions[i].answers[0] %>'
+                        class="answers w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+                    <label class=""> Other Answer 2 </label> <input name="answers" id="answer2"
+                        value='<%= questions[i].answers[1] %>'
+                        class="answers w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+                    <label class=""> Other Answer 2 </label> <input name="answers" id="answer3"
+                        value='<%= questions[i].answers[2] %>'
+                        class="answers w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+
+                    <select name="skill" class="w-80 mb-4 border-4 border-blue-500 border-opacity-50"
+                        selected='<%= questions[i].skill %>'>
+                        <option>Kind</option>
+                        <option>Passable</option>
+                        <option>Challenging</option>
+                    </select>
+                    <select name="category" class="w-80 mb-4 border-4 border-blue-500 border-opacity-50"
+                        selected=<%=questions[i].category %>>
+                        <option>General</option>
+                        <otion>Sport</otion>
+                        <Option>Geography</Option>
+                        <option>Entertainment</option>
+                        <option>History</option>
+
+                    </select>
+                </section>
+                <!-- <button  id="addNewAnswer" class="p-2 rounded-lg py-2 m-3 px-4 bg-red-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">Add New Answer</button>  -->
+                <br />
+                <button type="submit" value="Update" name="action"
+                    class="p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
+                    Update Question</button>
+                <button type="submit" value="Delete" name="action"
+                    class=" deletetButton p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
+                    Delete Question</button>
+            </form>
+            <!-- Loop through quotes -->
+
+            <% } %>
+    </section>
+    <article>
+
+        <% if (page> 1) { %>
+            <button type="submit" id="backButton"
+                class="p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
+                Previous</button>
+            <% } %>
+                <button type="submit" id="nextButton"
+                    class="p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">
+                    Next</button>
+    </article>
+    <script>
+        var docNo = parseInt('<%= page %>');
+
+        var element = document.getElementById("backButton");
+        if (typeof (element) != 'undefined' && element != null) {
+            element.setAttribute('onclick', "location.href='" + (docNo - 1) + "'");
+        }
+        document.getElementById("nextButton").setAttribute('onclick', "location.href='" + (docNo + 1) + "'");
+
+
+        searchCategory = document.getElementById("searchCategory");
+        searchSkill = document.getElementById("searchSkill");
+        searchInputBox = document.getElementById("searchInputBox");
+        searchCategory.addEventListener('change', _ => changeSearchValues());
+        searchInputBox.addEventListener('change', _ => changeSearchValues());
+        searchSkill.addEventListener('change', _ => changeSearchValues());
+
+        function changeSearchValues() {
+            url = '/search';
+            fetch(url, {
+                method: 'post',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    url: url,
+                    category: searchCategory.value,
+                    skill: searchSkill.value,
+                    searchWords: searchInputBox.value.split(" ")
+                })
+            })
+                .then(res => {
+                    if (res.ok) return res.json()
+                })
+                .then(data => {
+                    console.log("data ", data)
+                    // parse data
+                    document.getElementById("questionListSection").innerHTML = "";
+                    let htmlString = "";        
+                    if (data){
+                   for (var i = 0; i < data.questions.length; i++) {
+                        htmlString="<form class='border-4 border-black-500 text-center m-12 text-xl font-bold' action='/records' method='POST'>" +
+                            '<input class="hidden idLabel" name="id" value="'+data.questions[i]._id +'">' +
+                            "<label class='inline'>Question </label> <input name='newQuestion' value='"+ data.questions[i].newQuestion +"' class='questionTextBox text-center mb-10 w-full inline border-4 border-blue-500 border-opacity-25 ' />" +
+                            "  <br />" +
+                            "<section class='block inline-grid grid-cols-2 gap-x-4' id='newAnswerSection'>" +
+                            " <label class=''> Correct Answer </label> <input name='correctAnswer' value='"+ data.questions[i].correctAnswer+"'             class='correctAnswerBox w-80 mb-4 border-4 border-blue-500 border-opacity-50' />" +
+                            "<label class=''> Other Answer 1 </label> <input name='answers' id='answer1' value='"+ data.questions[i].answers[0]+"'         class='answers w-80 mb-4 border-4 border-blue-500 border-opacity-50' />" +
+                            "<label class=''> Other Answer 2 </label> <input name='answers' id='answer2' value='"+ data.questions[i].answers[1]+"'      class='answers w-80 mb-4 border-4 border-blue-500 border-opacity-50' />" +
+                            "<label class=''> Other Answer 2 </label> <input name='answers' id='answer3' value='"+ data.questions[i].answers[2]+"'         class='answers w-80 mb-4 border-4 border-blue-500 border-opacity-50' />" +
+                            "<select name='skill' class='w-80 mb-4 border-4 border-blue-500 border-opacity-50'selected='"+ data.questions[i].skill+"'>" +
+                            "   <option>Kind</option>" +
+                            "   <option>Passable</option>" +
+                            "     <option>Challenging</option>" +
+                            "</select>" +
+                            "<select name='category' class='w-80 mb-4 border-4 border-blue-500 border-opacity-50' selected='"+ data.questions[i].category+'">' +
+                            "<option>General</option>" +
+                            "<otion>Sport</otion>" +
+                            "<Option>Geography</Option>" +
+                            "  <option>Entertainment</option>" +
+                            " <option>History</option>" +
+
+                            "</select>" +
+                            "</section>" +
+
+                            "<br />" +
+                            "<button type='submit' value='Update' name='action' class='p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50'> Update Question</button>" +
+                            "  <button type='submit' value='Delete' name='action'class=' deletetButton p-2 rounded-lg py-2 m-3 px-4 bg-blue-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50'> Delete Question</button>" +
+                            "</form>" ;
+   
+    } }
+    else {
+        htmlString= "No data"
+    }
+    document.getElementById("questionListSection").innerHTML = htmlString;
+
+                    })
+        }// end of function
+    </script>
+
+</body>
+
+</html>

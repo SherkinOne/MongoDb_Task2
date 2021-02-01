@@ -1,0 +1,46 @@
+<!-- addnew.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="styles/tailwind.css" />
+  <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+  <script src="indexPage.js"> </script>
+  <meta charset="UTF-8" />
+  <title>Quiz Questions</title>
+</head>
+
+<body>
+
+  <head>
+
+  </head>
+
+  <body>
+    <header>
+      <h1 class="font-black leading-8 border-indigo-900 text-center text-6xl m-12">
+        Add New Questions
+      </h1>
+      <%- include('./static/buttons'); %>
+    </header>
+    <form class="text-center m-12 text-xl font-bold" action="/chooseQuiz" method="POST">
+        <section class="text-center m-12">
+            <button name="level" value="kind"
+              class="p-2 w-44 rounded-lg py-4 m-3 px-4 bg-yellow-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+            >   
+              Kind
+            </button>
+            <button name="level" value="Passable"
+              class="p-2 w-44 rounded-lg py-4 m-3 px-4 bg-blue-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+            >
+              Passable
+            </button>
+            <button name="level" value="Challenging"
+              class="p-2 w-44 rounded-lg py-4 m-3 px-4 bg-green-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+            >
+              Challenging
+            </button>
+            </section>
+    </form>
+</body>
+    </html>

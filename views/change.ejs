@@ -22,21 +22,34 @@
 
   <% for(var i=0; i < questions.length; i++) {%>
     <form class="border-4 border-black-500 text-center m-12 text-xl font-bold" action="/records" method="POST">
-      <input class="hidden idLabel" name="id">
+      <input class="hidden idLabel" name="id" value = '<%= questions[i]._id %>'>
         
       </input>
-      <label class="inline">Question </label> <input name="newQuestion"
-        class="questionTextBox mb-10 w-full inline border-4 border-blue-500 border-opacity-25 " />
+      <label class="inline">Question </label> <input name="newQuestion" value='<%= questions[i].newQuestion %>'
+        class="questionTextBox text-center mb-10 w-full inline border-4 border-blue-500 border-opacity-25 " />
       <br />
       <section class="block inline-grid grid-cols-2 gap-x-4" id="newAnswerSection">
-        <label class=""> Correct Answer </label> <input name="correctAnswer"
+        <label class=""> Correct Answer </label> <input name="correctAnswer" value = '<%= questions[i].correctAnswer %>'
           class="correctAnswerBox w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
-        <label class=""> Other Answer 1 </label> <input name="answers"
-          class="w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
-        <label class=""> Other Answer 2 </label> <input name="answers"
-          class="w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
-
-
+        <label class=""> Other Answer 1 </label> <input name="answers" id="answer1"  value='<%= questions[i].answers[0] %>'
+          class="answers w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+        <label class=""> Other Answer 2 </label> <input name="answers"  id="answer2" value='<%= questions[i].answers[1] %>'
+          class="answers w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+          <label class=""> Other Answer 2 </label> <input name="answers"  id="answer2" value='<%= questions[i].answers[2] %>'
+          class="answers w-80 mb-4 border-4 border-blue-500 border-opacity-50" />
+          <select name="skill" selected='<%= questions[i].skill %>'>
+            <option>Kind</option>
+            <option>Passable</option>
+            <option>Challenging</option>
+          </select>
+          <select name="category" value='<% questions[i].category %>' selected='<% questions[i].category %>'>
+            <option>General</option>
+            <otion>Sport</otion>
+            <Option>Geography</Option>
+            <option>Entertainment</option>
+            <option>History</option>
+          
+          </select>
       </section>
       <!-- <button  id="addNewAnswer" class="p-2 rounded-lg py-2 m-3 px-4 bg-red-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">Add New Answer</button>  -->
       <br />
@@ -48,16 +61,7 @@
         Delete Question</button>
     </form>
     <!-- Loop through quotes -->
-    <script>
-      // questionTextBox
-      var docNo = parseInt('<%= i %> ');
-      var questiontxt = '<%= questions[i].answers %> '
-      console.log(this);
-      document.getElementsByClassName("idLabel")[docNo].value = '<%= questions[i]._id %> '
-      document.getElementsByClassName("questionTextBox")[docNo].value = '<%= questions[i].Question %> '
-      document.getElementsByClassName("correctAnswerBox")[docNo].value = '<%= questions[i].correctAnswer %>'
-
-    </script>
+   
     <% } %>
 
       <article>
@@ -76,9 +80,9 @@
         
         var element = document.getElementById("backButton");
         if (typeof (element) != 'undefined' && element != null) {
-          element.setAttribute('onclick', "location.href='" + (docNo - 1) + "'");
+          element.setAttribute('onclick', "location.href='page=" + (docNo - 1) + "'");
         }
-        document.getElementById("nextButton").setAttribute('onclick', "location.href='" + (docNo + 1) + "'");
+        document.getElementById("nextButton").setAttribute('onclick', "location.href='page=" + (docNo + 1) + "'");
 
 
       </script>
